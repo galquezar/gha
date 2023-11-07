@@ -24,6 +24,6 @@ jobs:
           date | tee last-change.txt
           git add last-change.txt
           git commit -m "Make a change"
-          git push origin HEAD:example-pr
+          git push origin HEAD:example-pr -f
           echo gh pr create --base ${{ github.head_ref }} --head "example-pr" --title "Example Pull Request"
           gh pr create --base ${{ github.head_ref }} --head "example-pr" --title "Example Pull Request"
