@@ -27,4 +27,4 @@ jobs:
           git add last-change.txt
           git commit -m "Make a change"
           git push origin HEAD:example-pr -f
-          gh pr create --base main --head "example-pr" --title "Example Pull Request"
+          gh pr create --base main --head "example-pr" --title "Example Pull Request" --fill
