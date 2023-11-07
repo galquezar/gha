@@ -4,7 +4,7 @@ name: Pull Request
 on:
   workflow_call:
     inputs:
-      pull-request:
+      pr:
         description: 'Pull request to check'
         required: true
         type: number
