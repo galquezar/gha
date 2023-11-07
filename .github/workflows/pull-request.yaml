@@ -6,7 +6,7 @@ on:
     workflows:
       - "Trigger"
     types:
-      - completed
+      - success
 
 jobs:
   _:
