@@ -28,4 +28,17 @@ jobs:
           git add last-change.txt
           git commit -m "Make a change"
           git push origin HEAD:example-pr -f
-          gh pr view || gh pr create --base main --head "example-pr" --title "Example Pull Request" --fill
+      - uses: actions/github-script@v6
+          with:
+            script: |
+              const pr = github.rest.pulls({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: "example-pr",
+                base: "main",
+                title: "Example Pull Request"
+              })
+              console.log(pr)
+      - uses: ./.github/workflows/pull-request.yaml@main
+          with:
+            pull-request: 1

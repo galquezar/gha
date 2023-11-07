@@ -2,11 +2,12 @@
 name: Pull Request
 
 on:
-  workflow_run:
-    workflows:
-      - "Trigger"
-    types:
-      - completed
+  workflow_call:
+    inputs:
+      pull-request:
+        description: 'Pull request to check'
+        required: true
+        type: number
 
 jobs:
   _:
@@ -14,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: "refs/pull/1/merge"
+          ref: "refs/pull/${{ inputs.pull-request }}/merge"
           fetch-depth: 0
       - name: Dump GitHub context
         env:
