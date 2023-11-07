@@ -31,7 +31,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const pr = github.rest.pulls({
+            const pr = github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head: "example-pr",
