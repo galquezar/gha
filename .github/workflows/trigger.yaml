@@ -42,11 +42,11 @@ jobs:
               title: "Automatic pull request"
             })
             console.log(pr)
-            return 1
+            return "1"
     outputs:
       pr: ${{ steps.create-pr.outputs.result }}
   job2:
     needs: job1
     uses: ./.github/workflows/pull-request.yaml
     with:
-      pull-request: ${{needs.job1.outputs.pr}}
+      pull-request: ${{ needs.job1.outputs.pr }}
