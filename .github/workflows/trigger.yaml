@@ -12,6 +12,8 @@ jobs:
   _:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate branch name
+        run: echo BRANCH_NAME=branch-$(date +%s) >> $GITHUB_ENV
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
@@ -23,20 +25,20 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git checkout -b example-pr
+          git checkout -b ${{ env.BRANCH_NAME}}
           date | tee last-change.txt
           git add last-change.txt
           git commit -m "Make a change"
-          git push origin HEAD:example-pr -f
+          git push origin HEAD:${{ env.BRANCH_NAME }} -f
       - uses: actions/github-script@v6
         with:
           script: |
             const pr = github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: "example-pr",
+              head: ${{ env.BRANCH_NAME }},
               base: "main",
-              title: "Example Pull Request"
+              title: "Automatic pull request"
             })
             console.log(pr)
       - uses: ./.github/workflows/pull-request.yaml@main
