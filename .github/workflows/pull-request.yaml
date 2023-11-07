@@ -1,0 +1,11 @@
+---
+on:
+  workflow_run:
+    workflows: ["trigger"]
+    types:
+      - completed
+
+jobs:
+  _:
+    steps:
+      - run: date

@@ -1,0 +1,9 @@
+---
+on:
+  schedule:
+    - cron: * * * * *
+
+jobs:
+  _:
+    steps:
+      - run: date
