@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: refs/pull/${{ input.pr }}/merge
+          ref: refs/pull/${{ inputs.pr }}/merge
           fetch-depth: 0
       - name: Dump GitHub context
         env:
