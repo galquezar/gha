@@ -42,3 +42,5 @@ jobs:
         run: echo "$MATRIX_CONTEXT"
       - name: Dump env
         run: env | sort
+      - name: List repo
+        run: ls -l
