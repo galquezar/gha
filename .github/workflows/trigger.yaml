@@ -10,4 +10,17 @@ jobs:
   _:
     runs-on: ubuntu-latest
     steps:
-      - run: date
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Change file
+        run: |
+          date | tee last-change.txt
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v4
+        with:
+          add-paths: last-change.txt
+          committer: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
