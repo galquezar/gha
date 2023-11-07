@@ -7,8 +7,7 @@ on:
       pr:
         description: 'Pull request to check'
         required: true
-        default: 1
-        type: number
+        type: string
 
 jobs:
   _:
