@@ -34,7 +34,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const pr = github.rest.pulls.create({
+            const pr = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head: process.env.BRANCH_NAME,
@@ -44,7 +44,7 @@ jobs:
             console.log(pr)
             return "1"
     outputs:
-      pr: ${{ steps.create-pr.outputs.result }}
+      pr: 1
   job2:
     needs: job1
     uses: ./.github/workflows/pull-request.yaml
