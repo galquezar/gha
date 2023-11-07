@@ -48,5 +48,5 @@ jobs:
   job2:
     needs: job1
     uses: ./.github/workflows/pull-request.yaml
-    with:
-      pr: ${{ needs.job1.outputs.pr }}
+      #    with:
+      #pr: ${{ needs.job1.outputs.pr }}

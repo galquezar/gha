@@ -7,6 +7,7 @@ on:
       pr:
         description: 'Pull request to check'
         required: true
+        default: 1
         type: number
 
 jobs:
@@ -15,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: "refs/pull/${{ inputs.pull-request }}/merge"
+          ref: "refs/pull/${{ inputs.pr }}/merge"
           fetch-depth: 0
       - name: Dump GitHub context
         env:
