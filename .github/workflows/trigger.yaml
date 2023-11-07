@@ -17,6 +17,8 @@ jobs:
 
       - name: Change file
         run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           date | tee last-change.txt
           git add last-change.txt
           git commit -m "Make a change"
