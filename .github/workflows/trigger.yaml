@@ -47,6 +47,6 @@ jobs:
       pr: ${{ steps.create-pr.outputs.result }}
   job2:
     needs: job1
-    uses: ./.github/workflows/pull-request.yaml@main
+    uses: ./.github/workflows/pull-request.yaml
     with:
       pull-request: ${{needs.job1.outputs.pr}}
