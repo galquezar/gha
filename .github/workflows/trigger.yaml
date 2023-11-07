@@ -9,7 +9,7 @@ on:
 permissions: write-all
 
 jobs:
-  _:
+  job1:
     runs-on: ubuntu-latest
     steps:
       - name: Generate branch name
@@ -30,7 +30,8 @@ jobs:
           git add last-change.txt
           git commit -m "Make a change"
           git push origin HEAD:${{ env.BRANCH_NAME }} -f
-      - uses: actions/github-script@v6
+      - id: create-pr
+        uses: actions/github-script@v6
         with:
           script: |
             const pr = github.rest.pulls.create({
@@ -41,6 +42,11 @@ jobs:
               title: "Automatic pull request"
             })
             console.log(pr)
-      - uses: ./.github/workflows/pull-request.yaml@main
-        with:
-          pull-request: 1
+            return 1
+    outputs:
+      pr: ${{ steps.create-pr.outputs.result }}
+  job2:
+    needs: job1
+    uses: ./.github/workflows/pull-request.yaml@main
+    with:
+      pull-request: ${{needs.job1.outputs.pr}}
