@@ -54,5 +54,3 @@ jobs:
         run: env | sort
       - name: List repo
         run: ls -l
-      - name: Force failure
-        run: exit 1
