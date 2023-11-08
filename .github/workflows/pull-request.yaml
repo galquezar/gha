@@ -16,7 +16,8 @@ jobs:
   _:
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.event_name == 'workflow_call' }}
+      # it is a push event because it is coming from the caller
+      - if: ${{ github.event_name == 'push' }}
         uses: actions/checkout@v4
         with:
           ref: refs/pull/${{ inputs.pr }}/merge
