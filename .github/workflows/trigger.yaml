@@ -54,5 +54,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
+        env:
+          PR: ${{ needs.job1.outputs.pr }}
         with:
-          script: console.log(context)
+          script: |
+            github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: process.env.PR
+            })
