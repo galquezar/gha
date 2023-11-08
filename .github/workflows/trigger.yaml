@@ -55,10 +55,4 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          script: |
-            console.log(context)
-            #            github.rest.pulls.merge({
-            #  owner: context.repo.owner,
-            #  repo: context.repo.repo,
-            #  pull_number:
-            #})
+          script: console.log(context)
