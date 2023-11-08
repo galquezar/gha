@@ -10,7 +10,7 @@ permissions: write-all
 
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Generate branch name
         run: echo BRANCH_NAME=branch-$(date +%Y%m%d%H%M) >> $GITHUB_ENV
