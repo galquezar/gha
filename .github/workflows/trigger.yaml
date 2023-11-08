@@ -49,3 +49,15 @@ jobs:
     uses: ./.github/workflows/pull-request.yaml
     with:
       pr: ${{ needs.job1.outputs.pr }}
+  job3:
+    needs: [job1, job2]
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            #            github.rest.pulls.merge({
+            #  owner: context.repo.owner,
+            #  repo: context.repo.repo,
+            #  pull_number: ${{}}
+            #})
+            console.log(context)
