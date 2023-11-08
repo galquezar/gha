@@ -54,6 +54,10 @@ jobs:
     needs: [job1, job2]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
       - uses: actions/github-script@v6
         env:
           PR: ${{ needs.job1.outputs.pr }}
