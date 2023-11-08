@@ -8,14 +8,22 @@ on:
         description: 'Pull request to check'
         required: true
         type: string
+  pull_request:
+    branches:
+      - main
 
 jobs:
   _:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - if: ${{ github.event_name == 'workflow_call' }}
+        uses: actions/checkout@v4
         with:
           ref: refs/pull/${{ inputs.pr }}/merge
+          fetch-depth: 0
+      - if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/checkout@v4
+        with:
           fetch-depth: 0
       - name: Dump GitHub context
         env:
