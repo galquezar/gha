@@ -65,4 +65,4 @@ jobs:
               pull_number: process.env.PR
             })
       - name: Delete branch after merge
-        run: git push origin --delete ${{ needs.job1.output.branch_name }}
+        run: git push origin --delete ${{ needs.job1.outputs.branch_name }}
