@@ -40,7 +40,6 @@ jobs:
               repo: context.repo.repo,
               head: process.env.BRANCH_NAME,
               base: "main",
-              title: "Automatic pull request"
             })
             return pr.data.number
     outputs:
@@ -70,4 +69,8 @@ jobs:
               pull_number: process.env.PR
             })
       - name: Delete branch after merge
-        run: git push origin --delete ${{ needs.job1.outputs.branch_name }}
+        run: |
+          git push origin --delete ${{ needs.job1.outputs.branch_name }}
+          if git show-ref --quiet --verify "refs/heads/${{ needs.job1.outputs.branch_name }}"; then
+            git push origin --delete ${{ needs.job1.outputs.branch_name }}
+          fi
