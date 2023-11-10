@@ -40,6 +40,7 @@ jobs:
               repo: context.repo.repo,
               head: process.env.BRANCH_NAME,
               base: "main",
+              title: "Automatic branch"
             })
             return pr.data.number
     outputs:
